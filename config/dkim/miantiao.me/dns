@@ -1,0 +1,32 @@
+
+Add this TXT record to the miantiao.me DNS zone.
+
+sep2017._domainkey    IN   TXT   v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvelnPMYpBUWxgZ4odsV1IwmKSFykhy6N4cft3Hurvmqtzcue/+KcLo3Uzi/AS05vWkfKT+axkch433+gjpXyukh5i5p4qFB0hyHAr9gIEKALPZtrI4Ga3PlirqCqoFkhpR8O76pebi/y/FzV5PbZPKnbaRytYRrECwBeOemETmnIOBVIQ/XpvfOEI1wNW+k9YRb9RmbdWRnUVX+vCWENopeXVOdfUA20fOh8TDLYeK8X0NKitxzTU2LwW0DMHkWKe+oxu8AHUnmpB2wj4k/pmVi4uzgfGILAmG7rsE6c7pG1iy+mlUbBbMcc/J32ZtG/Rjh8LyWYUla+b4IXKalkGwIDAQAB
+
+
+BIND zone file formatted:
+
+sep2017._domainkey    IN   TXT (
+	"v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvelnPMYpBUWxgZ4odsV1IwmKSFykhy6N4cft3Hurvmqtzcue/+KcLo3U"
+	"zi/AS05vWkfKT+axkch433+gjpXyukh5i5p4qFB0hyHAr9gIEKALPZtrI4Ga3PlirqCqoFkhpR8O76pebi/y/FzV5PbZPKnbaRytYRrECwBeOe"
+	"mETmnIOBVIQ/XpvfOEI1wNW+k9YRb9RmbdWRnUVX+vCWENopeXVOdfUA20fOh8TDLYeK8X0NKitxzTU2LwW0DMHkWKe+oxu8AHUnmpB2wj4k/p"
+	"mVi4uzgfGILAmG7rsE6c7pG1iy+mlUbBbMcc/J32ZtG/Rjh8LyWYUla+b4IXKalkGwIDAQAB"
+        )
+
+Tell the world that the ONLY mail servers that send mail from this domain are DKIM signed and/or bear our MX and A records.
+
+With SPF:
+
+        SPF "v=spf1 mx a -all"
+        TXT "v=spf1 mx a -all"
+
+With DMARC:
+
+_dmarc  TXT "v=DMARC1; p=reject; adkim=s; aspf=r; rua=mailto:dmarc-feedback@miantiao.me; ruf=mailto:dmarc-feedback@miantiao.me; pct=100"
+
+For more information about DKIM and SPF policy, the documentation within each plugin contains a longer discussion and links to more detailed information:
+
+   haraka -h dkim_sign
+   haraka -h spf
+
+
